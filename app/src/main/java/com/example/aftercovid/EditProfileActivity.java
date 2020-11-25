@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class EditProfile extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ public class EditProfile extends AppCompatActivity {
         buttonInterests.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openInterests();
+                openInterestsActivity();
             }
         });
 
@@ -26,17 +26,17 @@ public class EditProfile extends AppCompatActivity {
         buttonPictures.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openPictures();
+                openPicturesActivity();
             }
         });
 
     }
-    public void openPictures(){
-        Intent intent = new Intent(this, Pictures.class);
+    public void openPicturesActivity(){
+        Intent intent = new Intent(this, PicturesActivity.class);
         startActivity(intent);
     }
-    public void openInterests(){
-        Intent intent = new Intent(this, Interests.class);
+    public void openInterestsActivity(){
+        Intent intent = new Intent(this, InterestsActivity.class);
         startActivity(intent);
     }
 }
