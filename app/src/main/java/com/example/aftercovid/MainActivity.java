@@ -21,6 +21,14 @@ public class MainActivity extends AppCompatActivity {
                 openMainMenuActivity();
             }});
 
+        Button buttonEditProfile = (Button)findViewById(R.id.buttonEditProfile);
+        buttonEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openEditProfile();
+            }
+        });
+
         Button buttonTest = (Button)findViewById(R.id.buttonTest);
         buttonTest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,8 +43,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainMenuActivity.class);
         startActivity(intent);
     }
+
     public void openTestActivity(){
         Intent intent = new Intent(this, TestActivity.class);
+        startActivity(intent);
+    }
+    public void openEditProfile(){
+        Intent intent = new Intent(this, EditProfile.class);
         startActivity(intent);
     }
 }
