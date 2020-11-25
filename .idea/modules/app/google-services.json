@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "587734523979",
+    "firebase_url": "https://aftercovid-e18dd.firebaseio.com",
+    "project_id": "aftercovid-e18dd",
+    "storage_bucket": "aftercovid-e18dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587734523979:android:a99365288d9c158242adce",
+        "android_client_info": {
+          "package_name": "com.example.aftercovid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587734523979-497gioca2nhemmt6msrlnh1con7v5t7l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aftercovid",
+            "certificate_hash": "e4df44b58fb4d175af15d49a08124af19839be19"
+          }
+        },
+        {
+          "client_id": "587734523979-hispcstjq9tf8u5ussvic6i3cf4476r8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMMIUhNo1BTtqHq4JHPpG04YTkaHgXGXk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587734523979-hispcstjq9tf8u5ussvic6i3cf4476r8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
