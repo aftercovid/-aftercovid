@@ -29,6 +29,24 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        Button buttonSwipe = (Button)findViewById(R.id.Swipebutton);
+        buttonTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSwipeActivity();
+            }
+
+        });
+
+        Button buttonMaches = (Button)findViewById(R.id.Matchesbutton);
+        buttonTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMatchesActivity();
+            }
+
+        });
     }
 
     private void openMainMenuActivity() {
@@ -39,4 +57,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TestActivity.class);
         startActivity(intent);
     }
+    public void openSwipeActivity(){
+        Intent intent = new Intent(this, SwipeActivity.class);
+        startActivity(intent);
+    }
+    public void openMatchesActivity(){
+        Intent intent = new Intent(this, MachesActivity.class);
+        startActivity(intent);
+    }
+
 }

@@ -10,7 +10,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="MAIN MENU"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -31,7 +31,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TEST"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="60dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.086" />
+
+    <Button
+        android:id="@+id/Swipebutton"
+        android:layout_width="78dp"
+        android:layout_height="54dp"
+        android:text="Swipe"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.088" />
+
+    <Button
+        android:id="@+id/Matchesbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Matches"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.238" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
