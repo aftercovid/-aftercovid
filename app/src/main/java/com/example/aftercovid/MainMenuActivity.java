@@ -7,25 +7,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_menu);
 
-        Button buttonMenu = (Button)findViewById(R.id.buttonMenu);
-        buttonMenu.setOnClickListener(new View.OnClickListener() {
+
+        Button buttonLogin = (Button)findViewById(R.id.buttonLogin);
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMainMenuActivity();
+                openLoginActivity();
             }
-
         });
     }
-
-    private void openMainMenuActivity() {
-        Intent intent = new Intent(this, MainMenuActivity.class);
+    public void openLoginActivity(){
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }
