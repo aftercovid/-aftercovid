@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         buttonEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openEditProfile();
+                openEditProfileActivity();
             }
         });
 
@@ -76,9 +76,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+<<<<<<< HEAD
 
     public void openEditProfile(){
         Intent intent = new Intent(this, EditProfile.class);
+||||||| ff702c6
+=======
+    public void openEditProfile(){
+        Intent intent = new Intent(this, EditProfile.class);
+=======
+    public void openEditProfileActivity(){
+        Intent intent = new Intent(this, EditProfileActivity.class);
+>>>>>>> f5379baeecdaac77f45bf6e2a6b4559e564eb330
         startActivity(intent);
     }
 
