@@ -1,33 +1,15 @@
 package com.example.aftercovid;
 
-import com.google.firebase.database.IgnoreExtraProperties;
+import androidx.appcompat.app.AppCompatActivity;
 
-@IgnoreExtraProperties
-public class interests {
-    private String interests_id;
-    private String interests;
+import android.os.Bundle;
 
-    public interests(){
+public class Interests extends AppCompatActivity {
 
-    }
-    public interests(String interests_id, String interests) {
-        this.interests_id = interests_id;
-        this.interests = interests;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_interests);
     }
 
-    public String getInterests_id() {
-        return interests_id;
-    }
-
-    public void setInterests_id(String interests_id) {
-        this.interests_id = interests_id;
-    }
-
-    public String getInterests() {
-        return interests;
-    }
-
-    public void setInterests(String interests) {
-        this.interests = interests;
-    }
 }

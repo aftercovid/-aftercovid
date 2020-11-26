@@ -75,19 +75,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MachesActivity.class);
         startActivity(intent);
     }
-
-<<<<<<< HEAD
-
-    public void openEditProfile(){
-        Intent intent = new Intent(this, EditProfile.class);
-||||||| ff702c6
-=======
-    public void openEditProfile(){
-        Intent intent = new Intent(this, EditProfile.class);
-=======
+    
     public void openEditProfileActivity(){
         Intent intent = new Intent(this, EditProfileActivity.class);
->>>>>>> f5379baeecdaac77f45bf6e2a6b4559e564eb330
         startActivity(intent);
     }
 

@@ -35,16 +35,8 @@ public class EditProfileActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PicturesActivity.class);
         startActivity(intent);
     }
-<<<<<<< HEAD:app/src/main/java/com/example/aftercovid/EditProfile.java
-    public void openInterests(){
-        Intent intent = new Intent(this, interests.class);
-||||||| ff702c6:app/src/main/java/com/example/aftercovid/EditProfile.java
-    public void openInterests(){
-        Intent intent = new Intent(this, Interests.class);
-=======
     public void openInterestsActivity(){
         Intent intent = new Intent(this, InterestsActivity.class);
->>>>>>> f5379baeecdaac77f45bf6e2a6b4559e564eb330:app/src/main/java/com/example/aftercovid/EditProfileActivity.java
         startActivity(intent);
     }
 }
