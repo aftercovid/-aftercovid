@@ -36,7 +36,7 @@ public class EditProfile extends AppCompatActivity {
         startActivity(intent);
     }
     public void openInterests(){
-        Intent intent = new Intent(this, Interests.class);
+        Intent intent = new Intent(this, interests.class);
         startActivity(intent);
     }
 }

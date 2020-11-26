@@ -9,15 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-        <activity android:name=".MachesActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".MachesActivity" />
         <activity android:name=".SwipeActivity" />
         <activity android:name=".MessageActivity" />
-=======
-        <activity android:name=".Pictures"></activity>
-        <activity android:name=".Interests" />
+        <activity android:name=".Pictures" />
+        <activity android:name=".interests" />
         <activity android:name=".EditProfile" />
->>>>>>> aa74cf16ef940322427d7f0cbabd6e5a33b6040b
         <activity android:name=".TestActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainMenuActivity" />

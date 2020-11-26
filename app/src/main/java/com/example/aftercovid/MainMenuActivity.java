@@ -22,10 +22,23 @@ public class MainMenuActivity extends AppCompatActivity {
                 openLoginActivity();
             }
         });
+
+        Button buttonRegister = (Button)findViewById(R.id.buttonRegister);
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openRegisterActivity();
+            }
+        });
     }
 
     public void openLoginActivity(){
         Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void openRegisterActivity(){
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 }

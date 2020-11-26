@@ -14,7 +14,7 @@ public class MachesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maches);
 
-        Button buttonMessage = (Button)findViewById(R.id.MessageButton);
+        Button buttonMessage = (Button)findViewById(R.id.buttonMessage);
         buttonMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
