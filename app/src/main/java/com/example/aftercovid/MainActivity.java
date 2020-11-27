@@ -67,19 +67,23 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openSwipeActivity(){
-        Intent intent = new Intent(this, SwipeActivity.class);
-        startActivity(intent);
-    }
-    public void openMatchesActivity(){
-        Intent intent = new Intent(this, MachesActivity.class);
-        startActivity(intent);
-    }
-
 
     public void openEditProfile(){
         Intent intent = new Intent(this, EditProfile.class);
         startActivity(intent);
     }
 
-}
+
+
+
+    public void openSwipeActivity(){
+        Intent intent = new Intent(this, SwipeActivity.class);
+        startActivity(intent);
+    }
+        public void openMatchesActivity() {
+            Intent intent = new Intent(this, MachesActivity.class);
+            startActivity(intent);
+        }}
+
+
+
