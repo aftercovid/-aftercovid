@@ -14,7 +14,7 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-
+        //Login button listener
         Button buttonLogin = (Button)findViewById(R.id.buttonLogin);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -23,6 +23,7 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
+        //Register button listener
         Button buttonRegister = (Button)findViewById(R.id.buttonRegister);
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,15 +31,47 @@ public class MainMenuActivity extends AppCompatActivity {
                 openRegisterActivity();
             }
         });
+
+        //Profile button listener
+        Button buttonProfile = (Button)findViewById(R.id.buttonProfile);
+        buttonProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openProfile();
+            }
+        });
+
+        //Edit profile button listener
+        Button buttonEdit = (Button)findViewById(R.id.buttonEdit);
+        buttonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openEditProfile();
+            }
+        });
     }
 
+    //Login activity redirect
     public void openLoginActivity(){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
+    //Register activity redirect
     public void openRegisterActivity(){
         Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
+    //Profile activity redirect
+    public void openProfile(){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+    //Edit profile activity redirect
+    public void openEditProfile(){
+        Intent intent = new Intent(this, EditProfileActivity.class);
         startActivity(intent);
     }
 }
