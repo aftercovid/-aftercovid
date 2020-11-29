@@ -11,16 +11,20 @@ public class User {
     private String description;
     //private String location;
     private Integer age;
+    private String preference;
+    private String gender;
 
 
     //dodaj gender tu pozniej i location i userid
-    public User(String firstName, String description, Integer age) {
+    public User(String firstName, String description, Integer age, String preference, String gender) {
         //this.userId = userId;
         this.firstName = firstName;
         //this.gender = gender;
         this.description = description;
         //this.location = location;
         this.age = age;
+        this.preference = preference;
+        this.gender = gender;
     }
 
     public User() {
@@ -72,5 +76,21 @@ public class User {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getPreference() {
+        return preference;
+    }
+
+    public void setPreference(String preference) {
+        this.preference = preference;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

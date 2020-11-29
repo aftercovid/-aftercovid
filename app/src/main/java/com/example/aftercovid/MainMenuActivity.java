@@ -49,6 +49,15 @@ public class MainMenuActivity extends AppCompatActivity {
                 openEditProfile();
             }
         });
+
+        //Search matches button listener
+        Button buttonStart = (Button)findViewById(R.id.buttonStart);
+        buttonStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSearch();
+            }
+        });
     }
 
     //Login activity redirect
@@ -72,6 +81,12 @@ public class MainMenuActivity extends AppCompatActivity {
     //Edit profile activity redirect
     public void openEditProfile(){
         Intent intent = new Intent(this, EditProfileActivity.class);
+        startActivity(intent);
+    }
+
+    //Search matches activity redirect
+    public void openSearch(){
+        Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
 }
