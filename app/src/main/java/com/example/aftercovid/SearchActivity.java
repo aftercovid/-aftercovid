@@ -4,13 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,12 +21,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
     //stores potential partner's id
     ArrayList<String> arrayList = new ArrayList<>();
+    ArrayList<String> existingRelationsList;
     //idk if i need 2 of them
     DatabaseReference users;
     DatabaseReference database;
@@ -47,16 +47,15 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
+        existingRelationsList = getIntent().getStringArrayListExtra("relation_list");
+        Log.i("ciekawe", Arrays.toString(existingRelationsList.toArray()));
         relations = new ArrayList<Relations>();
         i=-1;
-
         textName = (TextView) findViewById(R.id.textName);
-
         FirebaseUser fuser = FirebaseAuth.getInstance().getCurrentUser();
         final String myId = fuser.getUid();
+        //relationsFilter(myId);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(SearchActivity.this, android.R.layout.simple_list_item_1, arrayList);
-
         users = FirebaseDatabase.getInstance().getReference().child("users");
 
         //get current user gender preference from db
@@ -79,11 +78,10 @@ public class SearchActivity extends AppCompatActivity {
                 String id = snapshot.getKey();
                 String gender = snapshot.child("gender").getValue().toString();
 
-                //ADD FILTER HERE
-                //database = FirebaseDatabase.getInstance().getReference().child("relations").child("uid");
+                //Log.i("CCCCCCC", Arrays.toString(existingRelationsList.toArray()));
 
                 //check if potential partner gender matches the user's preference
-                if((myPreference.equals(gender))&&(!myId.equals(id))){
+                if((myPreference.equals(gender))&&(!myId.equals(id))&&(!existingRelationsList.contains(id))){
                     //if true, add id or potential partner to an array
                     arrayList.add(id);
                     arrayAdapter.notifyDataSetChanged();
@@ -97,7 +95,6 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                //idk what does it do
                 arrayAdapter.notifyDataSetChanged();
             }
 
@@ -183,5 +180,38 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
+//    public void relationsFilter(final String myId){
+//        database = FirebaseDatabase.getInstance().getReference().child("relations");
+//        database.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                String uid = snapshot.child("uid").getValue().toString();
+//                String suid = snapshot.child("suid").getValue().toString();
+//                if(myId.equals(uid)) {
+//                    existingRelationsList.add(suid);
+//                }
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 
 }
