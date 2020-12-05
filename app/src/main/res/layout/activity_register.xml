@@ -10,45 +10,17 @@
         android:id="@+id/inputEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
         android:hint="Email"
-        app:layout_constraintTop_toBottomOf="@+id/inputName"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/inputName"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="56dp"
-        android:hint="Name"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <RadioButton
-        android:id="@+id/radioFemale"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Female"
-        app:layout_constraintEnd_toStartOf="@+id/radioMale"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="353dp" />
-
-    <RadioButton
-        android:id="@+id/radioMale"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
-        android:layout_marginRight="88dp"
-        android:text="Male"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="353dp" />
+        app:layout_constraintVertical_bias="0.126"
+        tools:layout_editor_absoluteX="16dp" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/inputPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
-        app:layout_constraintBottom_toTopOf="@+id/radioFemale"
         app:layout_constraintTop_toBottomOf="@+id/inputEmail"
         tools:layout_editor_absoluteX="4dp" />
 
@@ -56,8 +28,18 @@
         android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="158dp"
+        android:layout_marginLeft="158dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="165dp"
+        android:layout_marginRight="165dp"
+        android:layout_marginBottom="164dp"
         android:text="REGISTER"
-        tools:layout_editor_absoluteX="158dp"
-        tools:layout_editor_absoluteY="519dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputPassword"
+        app:layout_constraintVertical_bias="0.543" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

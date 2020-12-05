@@ -62,6 +62,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         if(account != null){
             Toast.makeText(this,"U Registered successfully",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, AfterLoginActivity.class);
+            startActivity(intent);
         }else {
             Toast.makeText(this,"U Didnt register", Toast.LENGTH_LONG).show();
         }

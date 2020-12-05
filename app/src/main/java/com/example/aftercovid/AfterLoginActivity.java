@@ -19,47 +19,22 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class MainMenuActivity extends AppCompatActivity {
+public class AfterLoginActivity extends AppCompatActivity {
 
     DatabaseReference database;
     ArrayList<String> existingRelationsList =  new ArrayList<>();
     ArrayList<String> likeList =  new ArrayList<>();
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
+        setContentView(R.layout.activity_after_login);
 
         FirebaseUser fuser = FirebaseAuth.getInstance().getCurrentUser();
         final String myId = fuser.getUid();
         relationsFilter(myId);
-
-        //Login button listener
-        Button buttonLogin = (Button)findViewById(R.id.buttonLogin);
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openLoginActivity();
-            }
-        });
-
-        //Register button listener
-        Button buttonRegister = (Button)findViewById(R.id.buttonRegister);
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openRegisterActivity();
-            }
-        });
-
-        //Profile button listener
-        Button buttonProfile = (Button)findViewById(R.id.buttonEdit);
-        buttonProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openProfile();
-            }
-        });
+        mAuth = FirebaseAuth.getInstance();
 
         //Edit profile button listener
         Button buttonEdit = (Button)findViewById(R.id.buttonEdit);
@@ -87,24 +62,14 @@ public class MainMenuActivity extends AppCompatActivity {
                 openMatch();
             }
         });
-    }
-
-    //Login activity redirect
-    public void openLoginActivity(){
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-
-    //Register activity redirect
-    public void openRegisterActivity(){
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
-    }
-
-    //Profile activity redirect
-    public void openProfile(){
-        Intent intent = new Intent(this, ProfileActivity.class);
-        startActivity(intent);
+        //SignOut button listener
+        Button buttonSignOut = (Button)findViewById(R.id.buttonSignOut);
+        buttonSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+            }
+        });
     }
 
     //Edit profile activity redirect
@@ -174,4 +139,11 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void signOut() {
+        mAuth.signOut();
+        Intent intent = new Intent(this, WelcomeActivity.class);
+        startActivity(intent);
+    }
+
 }

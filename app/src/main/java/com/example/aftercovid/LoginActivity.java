@@ -63,6 +63,8 @@ public class LoginActivity extends AppCompatActivity {
         if(account != null){
             Toast.makeText(this,"U signed in successfully",Toast.LENGTH_LONG).show();
             //startActivity(new Intent(this,AnotherActivity.class));
+            Intent intent = new Intent(this, AfterLoginActivity.class);
+            startActivity(intent);
 
         }else {
             Toast.makeText(this,"U Didnt sign in", Toast.LENGTH_LONG).show();
