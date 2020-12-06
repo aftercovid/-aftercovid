@@ -48,6 +48,7 @@ public class MessageActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance().getReference();
 
+        //wyszukuje wiadomosci konkretnych uzytkownikow i dodaje je na ekran, liste bierze z matchactivity(zawiera ona niezbedne info o kliknietej parze)
         database.child("messages").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -83,6 +84,7 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
+        //wysyla nowa wiadomosc do db
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){

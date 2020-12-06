@@ -50,6 +50,7 @@ public class MatchActivity extends AppCompatActivity {
         listViewMatch = (ListView) findViewById(R.id.listviewmatches);
         listViewMatch.setAdapter(arrayAdapter);
         listViewMatch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            //gdy klikniemy kogos z listy to nas przeniesie do wiadomosci
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //handleMatch(myId,arrayList.get(position),true);
@@ -68,6 +69,7 @@ public class MatchActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance().getReference();
         matches = new ArrayList<Match>();
 
+        //na podstawie likelisty z afterloginacticity szuka matchow
         database.child("relations").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -109,6 +111,8 @@ public class MatchActivity extends AppCompatActivity {
 
 
     }
+
+    //reszta chyba niepotrzebna juz
 
     @Override
     public void onResume(){

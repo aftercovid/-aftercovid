@@ -23,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+//need to add obligatory profile info edittexts here too
+
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "EmailPassword";

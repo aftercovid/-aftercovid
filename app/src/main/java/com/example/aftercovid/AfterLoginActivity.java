@@ -31,6 +31,7 @@ public class AfterLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_login);
 
+        //get user id
         FirebaseUser fuser = FirebaseAuth.getInstance().getCurrentUser();
         final String myId = fuser.getUid();
         relationsFilter(myId);
@@ -89,6 +90,7 @@ public class AfterLoginActivity extends AppCompatActivity {
     }
 
     //Matches activity redirect
+    //przekazuje liste polubionych uzytkownikow z relationsFilter
     public void openMatch(){
         //pass an array to search activity
         Bundle b = new Bundle();
@@ -99,6 +101,7 @@ public class AfterLoginActivity extends AppCompatActivity {
     }
 
     //due to firebase asynchronous nature it gets search relations here
+    //z bazy relacji szuka rekordow zalogowanego uzytkownika i dodaje kazdego polubionego do listy, przekazuje ja do innego activity
     public void relationsFilter(final String myId){
         database = FirebaseDatabase.getInstance().getReference().child("relations");
         database.addChildEventListener(new ChildEventListener() {
@@ -107,9 +110,11 @@ public class AfterLoginActivity extends AppCompatActivity {
                 String uid = snapshot.child("uid").getValue().toString();
                 String suid = snapshot.child("suid").getValue().toString();
                 if(myId.equals(uid)) {
+                    //sprawdz czy lista juz nie zawiera danego usera
                     if(!existingRelationsList.contains(suid)) {
                         String like = snapshot.child("liked").getValue().toString();
                         Boolean isLiked = Boolean.parseBoolean(like);
+                        //jesli user jest polubiony dodaj do osobnej listy z samymi likami
                         if(isLiked=true){
                             likeList.add(suid);
                         }
@@ -140,6 +145,7 @@ public class AfterLoginActivity extends AppCompatActivity {
         });
     }
 
+    //sign out, redirect to welcome screen
     private void signOut() {
         mAuth.signOut();
         Intent intent = new Intent(this, WelcomeActivity.class);

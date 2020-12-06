@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CompleteProfileActivity"></activity>
+        <activity android:name=".InterestsActivity"></activity>
+        <activity android:name=".CompleteProfileActivity" />
         <activity android:name=".AfterLoginActivity" />
         <activity android:name=".MainMenuActivity" />
         <activity android:name=".MessageActivity" />

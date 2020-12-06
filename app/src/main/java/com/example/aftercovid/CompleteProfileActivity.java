@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+//TODO/might delete later
 public class CompleteProfileActivity extends AppCompatActivity {
 
     @Override

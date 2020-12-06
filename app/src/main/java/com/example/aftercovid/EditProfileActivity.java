@@ -18,6 +18,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -41,14 +44,22 @@ import java.util.List;
 
 public class EditProfileActivity extends AppCompatActivity {
 
+    //choose gender and preferences radio buttons
+    RadioGroup gender;
+    RadioGroup preference;
+    RadioButton userGender;
+    RadioButton userPreference;
+
+    //get user info/edit it
     EditText editName;
     EditText editDescription;
     EditText editAge;
-    EditText editPreference;
-    EditText editGender;
     Button buttonConfirm;
-    List<User> users;
+    Button buttonInterests;
+    //List<User> users;
     DatabaseReference databaseUsers;
+
+    //to add pictures
     private ImageView profilePic;
     private Uri imageUri;
     private FirebaseStorage storage;
@@ -60,89 +71,132 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        editPreference=(EditText)findViewById(R.id.editPreference);
+        gender = (RadioGroup) findViewById(R.id.radioGender);
+        preference = (RadioGroup) findViewById(R.id.radioPreference);
         editName=(EditText)findViewById(R.id.editName);
         editDescription=(EditText)findViewById(R.id.editDescription);
         editAge=(EditText)findViewById(R.id.editAge);
-        editGender=(EditText)findViewById(R.id.editGender);
         buttonConfirm=(Button)findViewById(R.id.buttonConfirm);
-        users = new ArrayList<User>();
+        buttonInterests=(Button)findViewById(R.id.buttonInterests);
+        //users = new ArrayList<User>();
         FirebaseUser fuser = FirebaseAuth.getInstance().getCurrentUser();
         final String uid = fuser.getUid();
-
         profilePic = findViewById(R.id.imageAdd);
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        storageReferenceImage = storage.getReference("images/"+uid);
 
-
-
+        //jesli klikniemy na zdj mozemy je zmienic
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 choosePicture();
             }
         });
-        storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
 
-        storageReferenceImage = storage.getReference("images/"+uid);
+        //czeka az sie zaznaczy jakiegos radiobuttona z plci
+        gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                userGender = (RadioButton) findViewById(checkedId);
+            }
+        });
 
+        //czeka az sie zaznaczy jakiegos radiobuttona z preferencja
+        preference.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                userPreference = (RadioButton) findViewById(checkedId);
+            }
+        });
+
+        //some pic logic
         storageReferenceImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 getPicture(uri);
             }
         });
-        //String url = "https://firebasestorage.googleapis.com/v0/b/aftercovid-e18dd.appspot.com/o/images%2FTwepbxiznrSaj8MsM0hsAhltfkt2?alt=media&token=f12b38a4-47cd-4272-a6ec-5eb486b4259d";
-        //Glide.with(this).load(url).into(profilePic);
 
-
-
-
-
-
-
-
-
-
-
-        buttonConfirm.setOnClickListener(new View.OnClickListener() {
+        //redirect to interests activity
+        buttonInterests.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
-            databaseUsers = FirebaseDatabase.getInstance().getReference("users");
-            String name = editName.getText().toString();
-            String description = editDescription.getText().toString();
-            String preference = editPreference.getText().toString();
-            String gender = editGender.getText().toString();
-            String sage = editAge.getText().toString();
-            int age = Integer.parseInt(sage);
-
-            User user = new User(name,description,age,preference,gender);
-
-            databaseUsers.child(uid).setValue(user);
+                Intent intent = new Intent(EditProfileActivity.this, InterestsActivity.class);
+                startActivity(intent);
             }
         });
 
-//        //it causes crashes when record does not exist
-//        databaseUsers = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
-//        databaseUsers.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                String name = snapshot.child("firstName").getValue().toString();
-//                String description = snapshot.child("description").getValue().toString();
-//                //String preference = snapshot.child("preference").getValue().toString();
-//                String age = snapshot.child("age").getValue().toString();
-//                editName.setText(name);
-//                editDescription.setText(description);
-//                editAge.setText(age);
-//                //editPreference.setText(preference);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//            }
-//        });
+        //dodaje zedytowanego uzytkownika
+        buttonConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                databaseUsers = FirebaseDatabase.getInstance().getReference("users");
+                //sprawdzenie czy wszystkei pola sa wyplenione
+                if((!TextUtils.isEmpty(editName.getText().toString()))&&(!TextUtils.isEmpty(editDescription.getText().toString()))&&(!TextUtils.isEmpty(editAge.getText().toString()))&&(!TextUtils.isEmpty(userPreference.getText().toString()))&&(!TextUtils.isEmpty(userGender.getText().toString()))) {
+                    String name = editName.getText().toString();
+                    String description = editDescription.getText().toString();
+                    String sage = editAge.getText().toString();
+                    int age = Integer.parseInt(sage);
+                    String gender = userGender.getText().toString();
+                    String preference = userPreference.getText().toString();
+                    User user = new User(name, description, age, preference, gender);
+                    databaseUsers.child(uid).setValue(user);
+                }
+                else{
+                    Toast.makeText(EditProfileActivity.this,"Fill in all textboxes in correct format!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        //sprawdza aktualne dane o uzytkowniku
+        databaseUsers = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+        databaseUsers.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child("firstName").exists()) {
+                    String name = snapshot.child("firstName").getValue().toString();
+                    editName.setText(name);
+                }
+                if(snapshot.child("description").exists()){
+                    String description = snapshot.child("description").getValue().toString();
+                    editDescription.setText(description);
+                }
+                if(snapshot.child("preference").exists()){
+                    String preference = snapshot.child("preference").getValue().toString();
+                    if(preference.equals("Females")){
+                        RadioButton check = (RadioButton) findViewById(R.id.radioPreferenceFemales);
+                        check.toggle();
+                    }
+                    if(preference.equals("Males")){
+                        RadioButton check = (RadioButton) findViewById(R.id.radioPreferenceMales);
+                        check.toggle();
+                    }
+                }
+                if(snapshot.child("age").exists()){
+                    String age = snapshot.child("age").getValue().toString();
+                    editAge.setText(age);
+                }
+                if(snapshot.child("gender").exists()){
+                    String gender = snapshot.child("gender").getValue().toString();
+                    if(gender.equals("Female")){
+                        RadioButton check = (RadioButton) findViewById(R.id.radioGenderFemale);
+                        check.toggle();
+                    }
+                    if(gender.equals("Male")){
+                        RadioButton check = (RadioButton) findViewById(R.id.radioGenderMale);
+                        check.toggle();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
+    //wlacza galerie na telefonie
     private void choosePicture(){
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -150,6 +204,7 @@ public class EditProfileActivity extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    //cd, do zdjec
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -195,6 +250,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     }
                 });
     }
+
     private void getPicture(final Uri uri){
         String url = uri.toString();
         Glide.with(this).load(url).into(profilePic);

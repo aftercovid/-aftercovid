@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+//useless i guess, might delete later
+
 public class ProfileActivity extends AppCompatActivity {
 
     DatabaseReference databaseUsers;
