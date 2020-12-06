@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "587734523979-0tdbh4dc4kpjgm1f2d68mg96o5d29e95.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aftercovid",
+            "certificate_hash": "01c274230e712b74822aaddb5d6a7d8d6d0453d3"
+          }
+        },
+        {
           "client_id": "587734523979-497gioca2nhemmt6msrlnh1con7v5t7l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

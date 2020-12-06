@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -19,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +48,10 @@ public class SearchActivity extends AppCompatActivity {
     //to add user decision to db
     List<Relations> relations;
 
+    ImageView imageViewUser;
+
+    private FirebaseStorage storage;
+    private StorageReference storageReferenceImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +67,12 @@ public class SearchActivity extends AppCompatActivity {
         //relationsFilter(myId);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(SearchActivity.this, android.R.layout.simple_list_item_1, arrayList);
         users = FirebaseDatabase.getInstance().getReference().child("users");
+
+        imageViewUser = findViewById(R.id.imageViewUser);
+
+        storage = FirebaseStorage.getInstance();
+
+
 
         //get current user gender preference from db
         users.child(myId).addValueEventListener(new ValueEventListener() {
@@ -163,6 +179,16 @@ public class SearchActivity extends AppCompatActivity {
     public void nextUser(){
         i++;
         userId = arrayList.get(i);
+
+        storageReferenceImage = storage.getReference("images/"+userId);
+
+        storageReferenceImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                getPicture(uri);
+            }
+        });
+
         //gets user name by his id
         database = FirebaseDatabase.getInstance().getReference().child("users").child(userId);
         database.addValueEventListener(new ValueEventListener() {
@@ -213,5 +239,10 @@ public class SearchActivity extends AppCompatActivity {
 //            }
 //        });
 //    }
+
+    private void getPicture(final Uri uri){
+        String url = uri.toString();
+        Glide.with(this).load(url).into(imageViewUser);
+    }
 
 }
